@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+  <script>
+    window.onload = function() {
+      // login.html에서 저장한 ID 불러오기
+      const userId = localStorage.getItem("userId");
+
+      if (userId) {
+        document.getElementById("welcomeText").textContent =
+          `Login successful. Your ID is ${userId}`;
+      } else {
+        document.getElementById("welcomeText").textContent =
+          "No login information found. Please return to the login page.";
+      }
+    };
+  </script>
+</head>
+<body>
+<br><br>
+<hr>
+  <h2 id="welcomeText"></h2>
+<hr>
+</body>
+</html>
