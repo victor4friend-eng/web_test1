@@ -17,12 +17,12 @@
       const pwd = document.getElementById('userPwd').value;
 
       if (!validateID(id)) {
-        alert('ID 형식이 잘못되었습니다. 예: 202301234');
+        alert('The ID format is incorrect. Example: 202301234');
         return false;
       }
 
       if (!checkPassword(pwd)) {
-        alert('비밀번호가 올바르지 않습니다.');
+        alert('The password is incorrect.');
         return false;
       }
 
@@ -50,3 +50,4 @@
   </form>
 </body>
 </html>
+
