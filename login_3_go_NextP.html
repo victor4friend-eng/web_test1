@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page</title>
+  <script>
+    // ---- ID 유효성 검사 ---login_3.html : 로긴 성공시 다음 페이지 이동
+    function validateID(id) {
+      // 20으로 시작하고 9자리 숫자
+      const pattern = /^20\d{7}$/;
+      return pattern.test(id);
+    }
+
+    function handleLogin(event) {
+      event.preventDefault(); // 기본 submit 막기
+      const id = document.getElementById('userId').value;
+      const pwd = document.getElementById('userPwd').value;
+
+      if (!validateID(id)) {
+        alert('ID 형식이 잘못되었습니다. 예: 202301234');
+        return false;
+      }
+
+      if (!checkPassword(pwd)) {
+        alert('비밀번호가 올바르지 않습니다.');
+        return false;
+      }
+
+      // 로그인 성공 시: ID를 다음 페이지로 전달
+      // localStorage 사용
+      localStorage.setItem("userId", id);
+
+      // welcome1.html로 이동
+      window.location.href = "welcome1.html";
+    }
+  </script>
+  <script src="login.js"></script>
+</head>
+
+<body>
+  <h2>Login Form</h2>
+  <form onsubmit="handleLogin(event)">
+    <label for="userId">ID:</label><br>
+    <input type="text" id="userId" name="userId" required><br><br>
+
+    <label for="userPwd">Password:</label><br>
+    <input type="password" id="userPwd" name="userPwd" required><br><br>
+
+    <input type="submit" value="Login">
+  </form>
+</body>
+</html>
