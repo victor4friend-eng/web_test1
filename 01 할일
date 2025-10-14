@@ -13,7 +13,7 @@
 <script src="(  )"></script>  </head>
 (1) login.css  (2) login.js (3) login.txt   (4) login.jpg
  - - - - - - 
-## Data Analytics 시험문제 
+## Data Analytics 시험문제 : 주관식 문제는 이전 학기의 MIS 주관식 코드 5문제를 참고 
 : Pandas문제 총 10문제 거의다 문제 내용 찾음 : 객관식 *5개 확보함.ppt로 있음
   Pandas 코드에서 문제를 5개 정도 낼 것.
  다섯문제 =>  Q) 판다스는 어떤 데이터 형태를 읽을 수 있나? 3주차 이론,
