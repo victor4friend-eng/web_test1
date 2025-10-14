@@ -5,10 +5,27 @@
 ### 내일 까지 할일 ###
 2,3학년 강의자료 올리기 => 중간고사 용으로
 
-#MIS 시험문제 추가 모음. 시험문제는 지난 학기 문제를 반절정도 활용 요망
+# # #  중간 고사 시험 문제 관련 # # # 
+## MIS 시험문제 추가 모음. 시험문제는 지난 학기 문제를 반절정도 활용 요망
   - - - - 
 1) MIS 시험문제 :Javascript를 call 하려고 한다 . 가장 적합한 것은?
 <head>
 <script src="(  )"></script>  </head>
 (1) login.css  (2) login.js (3) login.txt   (4) login.jpg
  - - - - - - 
+## Data Analytics 시험문제 
+: Pandas문제 총 10문제 거의다 문제 내용 찾음 : 객관식 *5개 확보함.ppt로 있음
+  Pandas 코드에서 문제를 5개 정도 낼 것.
+ 다섯문제 =>  Q) 판다스는 어떤 데이터 형태를 읽을 수 있나? 3주차 이론,
+       Q) P227 01과 02 짝집기 문제1 (1)인텍스, 코드문제로 3개 정도 채우기
+    - - - 
+:Data Analytics에서 15문제 내기  : 객관식 10문제 내기, 주관식 코드 5문제 내기
+ p266 03번, MSE문제, P265 문04, 문05(supervised Learning), 문06(Unsupervised Learning), 문08(주택값 예측 관련),
+ 문10(회귀분석 2D,3D, 등의 문제), Q) 그림으로 어떤 방법인지 찾기 2문제 :  선형회귀 - 클러스터링 - Classification -NN
+Q) Which of the following is not a data collection method?(작년 MIS 기말고사 문제)
+Web scraping,  Log data collection, Visualization, Online survey tools such as Google Forms
+Q) Data Analytics Process : 순서 혹은 아닌 것은? 으로 만들기. 
+Q)outlier 문제, Q) 산점도, Q) box.plot, Q)STD 
+Q) AI정의 ,Q) 머신러닝 정의 ,Q) 예측모델의 정의 : f(x), x, 실제 값들이다. 모델을 찾는다는 것은? f(x)를 찾는 것이다.  
+Q) 전통 러닝과 머신 러닝의 차이는?   
+> > Data A의 객관식은 이정도면 충분히 10개 만들 수 있다.  주관식 코드 문제를 5개 내자. 선형 문제로 내기. 수학식? 
