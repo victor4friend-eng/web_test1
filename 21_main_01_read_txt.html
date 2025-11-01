@@ -2,24 +2,48 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>TXT 파일 읽기 예제</title>
+  <title>GitHub TXT 파일 선택 불러오기</title>
 </head>
 <body>
-  <h2>TXT 파일 읽기</h2>
-  <input type="file" id="fileInput" accept="a.txt">
-  <pre id="output"></pre>
+  <h2>GitHub TXT 파일 선택 후 불러오기</h2>
+
+  <!-- 🔽 파일 선택 드롭다운 -->
+  <select id="fileSelect">
+    <option value="">-- TXT 파일을 선택하세요 --</option>
+    <option value="sample1.txt">sample1.txt</option>
+    <option value="sample2.txt">sample2.txt</option>
+    <option value="notes.txt">notes.txt</option>
+  </select>
+
+  <!-- 🔽 불러오기 버튼 -->
+  <button onclick="loadTxt()">불러오기</button>
+
+  <!-- 🔽 출력 영역 -->
+  <pre id="output" style="border:1px solid #ccc; padding:10px; width:80%; height:300px; overflow:auto;"></pre>
 
   <script>
-    document.getElementById('fileInput').addEventListener('change', function(event) {
-      const file = event.target.files[0];
-      if (!file) return;
+    function loadTxt() {
+      const fileName = document.getElementById("fileSelect").value;
+      if (!fileName) {
+        alert("먼저 TXT 파일을 선택하세요!");
+        return;
+      }
 
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        document.getElementById('output').textContent = e.target.result;
-      };
-      reader.readAsText(file, 'utf-8');
-    });
+      // ✅ GitHub Pages의 파일 경로 (본인 주소로 수정)
+      const fileUrl = "https://victor4friend-eng.github.io/web_test1/" + fileName;
+
+      fetch(fileUrl)
+        .then(response => {
+          if (!response.ok) throw new Error("파일을 불러올 수 없습니다.");
+          return response.text();
+        })
+        .then(data => {
+          document.getElementById("output").textContent = data;
+        })
+        .catch(error => {
+          document.getElementById("output").textContent = "오류 발생: " + error.message;
+        });
+    }
   </script>
 </body>
 </html>
