@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Google Drive 자료 링크 예시</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    h2 {
+      color: #333;
+    }
+    a {
+      color: #0073e6;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: 1px solid #888;
+      margin-top: 20px;
+      border-radius: 8px;
+    }
+    .section {
+      margin-bottom: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🔗 Google Drive 자료 보기 예시</h2>
+  <p>아래의 예시는 GitHub 홈페이지에서 Google Drive 파일을 링크하거나 직접 표시하는 방법을 보여줍니다.</p>
+
+  <div class="section">
+    <h3> PDF file link   </h3>
+    <!-- 🔗 PDF 파일 링크 -->
+    <p>
+      <a href="https://drive.google.com/file/d/1z_Bnv1ezu2RXp8s5ebsuuO3Bl2d6VQHb/view?usp=drive_link" target="_blank">
+        ▶ PDF 새 창에서 열기
+      </a>
+    </p>
+
+    <!-- 🔽 페이지 내에서 PDF 표시 -->
+    <iframe 
+      src="https://drive.google.com/file/d/1a2B3cDeFGhIjKlmNoPqR/preview"
+      allow="autoplay">
+    </iframe>
+  </div>
+
+  <div class="section">
+    <h3>2️⃣ PPTX  (Google Docs Viewer )</h3>
+    <!-- 🔗 PPT 파일 링크 -->
+    <p>
+      <a href="https://drive.google.com/file/d/1b2C3dEfGhIjKlMnOpQrS/view" target="_blank">
+        ▶ PPT 새 창에서 열기
+      </a>
+    </p>
+
+    <!-- 🔽 Google Docs Viewer로 웹에서 표시 -->
+    <iframe 
+      src="https://docs.google.com/gview?url=https://drive.google.com/uc?id=1b2C3dEfGhIjKlMnOpQrS&embedded=true">
+    </iframe>
+  </div>
+
+  <div class="section">
+    <h3>3️⃣ Word (DOCX) </h3>
+    <p>
+      <a href="https://drive.google.com/file/d/1c2D3eFgHiJkLmNoPqRsT/view" target="_blank">
+        ▶ Word 
+      </a>
+    </p>
+
+    <iframe 
+      src="https://docs.google.com/gview?url=https://drive.google.com/uc?id=1c2D3eFgHiJkLmNoPqRsT&embedded=true">
+    </iframe>
+  </div>
+
+</body>
+</html>
