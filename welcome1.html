@@ -16,6 +16,11 @@
           "No login information found. Please return to the login page.";
       }
     };
+    // next line added . Nov.01.2025
+    function showPage(page) {
+      //document.getElementById("myFrame").src = page;
+      self.location.href = src;
+    }
   </script>
   <style>
     /* 버튼들을 같은 행에 배치 */
@@ -40,11 +45,12 @@
   <h2 id="welcomeText"></h2>
 <hr>
 <div class="button-row">
-    <button onclick="showPage('page1.html')">페이지 1</button>
-    <button onclick="showPage('page2.html')">페이지 2</button>
-    <button onclick="showPage('page3.html')">페이지 3</button>
+    <button onclick="showPage('21_main_01_read_txt.html')">TXT read</button>
+    <button onclick="showPage('21_main_03_read_doc_table.html')">Doc read</button>
+    <button onclick="showPage('21_main_03_read_excel_1.html')">Excel read</button>
   </div>
   
 </body>
 </html>
+
 
