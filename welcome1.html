@@ -17,11 +17,34 @@
       }
     };
   </script>
+  <style>
+    /* 버튼들을 같은 행에 배치 */
+    .button-row {
+      display: flex;          /* 가로 배치 */
+      justify-content: center;/* 가운데 정렬 */
+      gap: 10px;              /* 버튼 간격 */
+      margin-top: 20px;
+    }
+
+    /* 버튼 디자인 */
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-<br><br>
+<br>
 <hr>
   <h2 id="welcomeText"></h2>
 <hr>
+<div class="button-row">
+    <button onclick="showPage('page1.html')">페이지 1</button>
+    <button onclick="showPage('page2.html')">페이지 2</button>
+    <button onclick="showPage('page3.html')">페이지 3</button>
+  </div>
+  
 </body>
 </html>
+
