@@ -60,6 +60,23 @@
   <script>
     let currentWorkbook = null;
 
+    // ✅ 빈 셀도 포함해 모든 셀을 2차원 배열로 변환하는 함수 2025.11.01 pm9 추가함
+function sheetToFullArray(sheet) {
+  const range = XLSX.utils.decode_range(sheet['!ref']);
+  const data = [];
+
+  for (let R = range.s.r; R <= range.e.r; ++R) {
+    const row = [];
+    for (let C = range.s.c; C <= range.e.c; ++C) {
+      const cellAddress = XLSX.utils.encode_cell({ r: R, c: C });
+      const cell = sheet[cellAddress];
+      row.push(cell ? cell.v : ""); // 빈 셀을 ""으로 채움
+    }
+    data.push(row);
+  }
+  return data;
+}
+
     // ✅ Excel 파일 선택 시 시트 목록 읽기
     document.getElementById("fileSelect").addEventListener("change", async function() {
       const fileName = this.value;
@@ -127,3 +144,4 @@
   </script>
 </body>
 </html>
+
