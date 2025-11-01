@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Word 파일의 표 읽기 예제</title>
+  <script src="https://unpkg.com/mammoth@1.6.0/mammoth.browser.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; }
+    #output { border: 1px solid #ccc; padding: 15px; min-height: 200px; background: #fafafa; }
+    table { border-collapse: collapse; width: 100%; margin-top: 1rem; }
+    table, th, td { border: 1px solid #555; }
+    th, td { padding: 8px; text-align: left; }
+    th { background-color: #eee; }
+  </style>
+</head>
+<body>
+  <h2>Word(.docx) 파일의 표를 웹페이지에 표시</h2>
+  <input type="file" id="upload" accept=".docx">
+  <div id="output">여기에 Word 문서 내용이 표시됩니다.</div>
+
+  <script>
+    document.getElementById('upload').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const arrayBuffer = e.target.result;
+        mammoth.convertToHtml({ arrayBuffer: arrayBuffer })
+          .then(function(resultObject) {
+            document.getElementById('output').innerHTML = resultObject.value;
+          })
+          .catch(function(error) {
+            document.getElementById('output').textContent = "변환 중 오류 발생: " + error.message;
+          });
+      };
+      reader.readAsArrayBuffer(file);
+    });
+  </script>
+</body>
+</html>
