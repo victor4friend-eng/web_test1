@@ -19,7 +19,15 @@
     // next line added . Nov.01.2025
     function showPage(page) {
       //document.getElementById("myFrame").src = page;
-      self.location.href = page;
+     // self.location.href = page;
+      // 현재 GitHub Pages의 기본 URL
+      const baseURL = "https://victor4friend-eng.github.io/web_test1/";
+
+      // 클릭된 파일을 GitHub Pages 전체 URL로 연결
+      const fullURL = baseURL + page;
+
+      // 현재 창(같은 탭)에서 이동
+      window.location.href = fullURL;
     }
   </script>
   <style>
@@ -52,6 +60,7 @@
   
 </body>
 </html>
+
 
 
 
