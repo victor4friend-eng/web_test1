@@ -2,20 +2,23 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>GitHub Excel 파일 선택 후 불러오기</title>
+  <title>GitHub Excel 파일 + 시트 선택 보기</title>
 
-  <!-- SheetJS (엑셀 파일 읽기 라이브러리) CDN -->
+  <!-- ✅ SheetJS 라이브러리 (엑셀 읽기용) -->
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
+      margin: 30px;
     }
     select, button {
       font-size: 16px;
       padding: 6px 10px;
       margin-right: 10px;
+    }
+    h2, h3 {
+      color: #333;
     }
     table {
       border-collapse: collapse;
@@ -23,79 +26,104 @@
       margin-top: 20px;
     }
     th, td {
-      border: 1px solid #aaa;
-      padding: 5px 10px;
+      border: 1px solid #999;
+      padding: 6px 12px;
       text-align: center;
     }
     th {
-      background-color: #f2f2f2;
+      background-color: #f4f4f4;
     }
   </style>
 </head>
 <body>
-  <h2>GitHub Excel 파일 선택 후 보기</h2>
+  <h2>GitHub Excel 파일 + 시트 선택 후 보기</h2>
 
   <!-- 🔽 Excel 파일 선택 -->
   <select id="fileSelect">
-    <option value="">-- Excel 파일을 선택하세요 --</option>
+    <option value="">-- Excel 파일 선택 --</option>
     <option value="I24_excel_2025.xlsx">I24_excel_2025_xlsx</option>
     <option value="sample2.xlsx">sample2.xlsx</option>
     <option value="sample3.xlsx">sample3.xlsx</option>
   </select>
 
-  <!-- 🔽 불러오기 버튼 -->
+  <!-- 🔽 시트 선택 -->
+  <select id="sheetSelect" disabled>
+    <option value="">-- 시트 선택 --</option>
+  </select>
+
+  <!-- 🔽 버튼 -->
   <button onclick="loadExcel()">불러오기</button>
 
-  <!-- 🔽 출력 영역 -->
+  <!-- 🔽 결과 표시 -->
   <div id="output"></div>
 
   <script>
-    async function loadExcel() {
-      const fileName = document.getElementById("fileSelect").value;
+    let currentWorkbook = null;
+
+    // ✅ Excel 파일 선택 시 시트 목록 읽기
+    document.getElementById("fileSelect").addEventListener("change", async function() {
+      const fileName = this.value;
       if (!fileName) {
-        alert("먼저 Excel 파일을 선택하세요!");
+        document.getElementById("sheetSelect").disabled = true;
+        document.getElementById("sheetSelect").innerHTML = "<option>-- 시트 선택 --</option>";
         return;
       }
 
-      // GitHub Pages의 Excel 파일 주소
+      // const fileUrl = "https://username.github.io/web_test1/" + fileName;
       const fileUrl = "https://victor4friend-eng.github.io/web_test1/" + fileName;
-
       try {
         const response = await fetch(fileUrl);
         if (!response.ok) throw new Error("파일을 불러올 수 없습니다.");
 
         const arrayBuffer = await response.arrayBuffer();
 
-        // Excel 데이터 읽기
-        const workbook = XLSX.read(arrayBuffer, { type: "array" });
+        // ✅ Workbook 읽기
+        currentWorkbook = XLSX.read(arrayBuffer, { type: "array" });
 
-        // 첫 번째 시트 선택
-        const sheetName = workbook.SheetNames[0];
-        const sheet = workbook.Sheets[sheetName];
-
-        // 시트를 JSON으로 변환
-        const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-
-        // HTML 테이블로 변환
-        let html = `<h3>${fileName} (${sheetName})</h3>`;
-        html += "<table>";
-        jsonData.forEach((row, i) => {
-          html += "<tr>";
-          row.forEach(cell => {
-            html += i === 0
-              ? `<th>${cell ?? ""}</th>`
-              : `<td>${cell ?? ""}</td>`;
-          });
-          html += "</tr>";
+        // ✅ 시트 목록 드롭다운 갱신
+        const sheetSelect = document.getElementById("sheetSelect");
+        sheetSelect.innerHTML = "";
+        currentWorkbook.SheetNames.forEach(name => {
+          const opt = document.createElement("option");
+          opt.value = name;
+          opt.textContent = name;
+          sheetSelect.appendChild(opt);
         });
-        html += "</table>";
+        sheetSelect.disabled = false;
 
-        document.getElementById("output").innerHTML = html;
       } catch (error) {
-        document.getElementById("output").innerHTML = "오류 발생: " + error.message;
+        alert("오류: " + error.message);
       }
+    });
+
+    // ✅ 시트 내용을 화면에 출력
+    function loadExcel() {
+      const fileName = document.getElementById("fileSelect").value;
+      const sheetName = document.getElementById("sheetSelect").value;
+      if (!fileName || !sheetName) {
+        alert("Excel 파일과 시트를 모두 선택하세요!");
+        return;
+      }
+
+      const sheet = currentWorkbook.Sheets[sheetName];
+      const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+      // ✅ HTML 테이블로 변환
+      let html = `<h3>${fileName} - ${sheetName}</h3>`;
+      html += "<table>";
+      jsonData.forEach((row, i) => {
+        html += "<tr>";
+        row.forEach(cell => {
+          html += i === 0
+            ? `<th>${cell ?? ""}</th>`
+            : `<td>${cell ?? ""}</td>`;
+        });
+        html += "</tr>";
+      });
+      html += "</table>";
+
+      document.getElementById("output").innerHTML = html;
     }
   </script>
 </body>
 </html>
-
